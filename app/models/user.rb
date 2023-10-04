@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :posts, through: :trips
   has_many :destinations, through: :posts
   has_many :users, through: :posts
+  has_many :friendships
+  has_many :friends, through: :friendships
 
 end
 

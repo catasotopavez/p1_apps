@@ -30,9 +30,4 @@ test:
 
 production:
   <<: *default
-  database: <%=ENV['PGDATABASE']%>
-  pool: 5
-  username: <%=ENV['PGUSER']%>
-  password: <%=ENV['PGPASSWORD']%>
-  port: <%=ENV['PGPORT']%>
-  host: <%=ENV['PGHOST']%>
+  database: postgres

@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       post 'destinations', to: 'destinations#create'
       get 'trips/:trip_id/trip_destinations', to: 'trip_destinations#index'
       get 'users/avatar/:email', to: 'users#avatar', as: 'user_avatar'
+      post '/friendships', to: 'friendships#create'
+      get "posts/index_by_user_and_trip", to:"posts#index_by_user_and_trip"
+      post 'posts/:id/upload_image', to: "posts#upload_image"
+      get "posts/:id/images", to:"posts#images"
+
 
       #Pregunta 5
       delete 'posts/:post_id/destinations/:id', to: 'destinations#destroy_post_destination', as: 'destroy_post_destination'

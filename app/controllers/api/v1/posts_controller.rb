@@ -69,6 +69,33 @@ class API::V1::PostsController < APIController
 
   end
 
+  def upload_image
+    @post = Post.find(params[:id])
+
+    if params[:image].present?
+      @post.files.attach(params[:image])
+      render json: { message: 'Image uploaded successfully' }
+    else
+      render json: { error: 'Image upload failed' }, status: :unprocessable_entity
+    end
+  end
+
+  def index_by_user_and_trip
+    
+    current_user=User.where(email: params[:user]).first
+    @posts = Post.where(author: current_user, trip_id: params[:trip_id])
+    render json: @posts
+  end
+
+  def images
+    @post = Post.find(params[:id])
+    puts("post")
+    puts(@post)
+    @images = @post.image_urls 
+  
+    render json: @images.map { |image| { url: url_for(image) } }
+  end
+
 
   private
 
